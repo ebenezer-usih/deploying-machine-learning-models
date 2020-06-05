@@ -29,6 +29,13 @@ fetch_data: &fetch_data
       ./scripts/fetch_kaggle_dataset.sh
 
 jobs:
+  fetch_data: &fetch_data
+  run:
+    name: Set script permissions and fetch data
+    command: |
+      source venv/bin/activate
+      chmod +x ./scripts/fetch_kaggle_dataset.sh
+      ./scripts/fetch_kaggle_dataset.sh
   test_regression_model_py36:
     docker:
       - image: circleci/python:3.6.9
@@ -231,6 +238,7 @@ workflows:
   version: 2
   test-all:
     jobs:
+      - fetch_data
       - test_regression_model_py36
       - test_regression_model_py37
       - test_regression_model_py38
