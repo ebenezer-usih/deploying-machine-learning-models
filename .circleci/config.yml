@@ -20,22 +20,22 @@ prepare_tox: &prepare_tox
       sudo pip install --upgrade pip
       pip install --user tox
 
-fetch_data: &fetch_data
-  run:
-    name: Set script permissions and fetch data
-    command: |
-      source venv/bin/activate
-      chmod +x ./scripts/fetch_kaggle_dataset.sh
-      ./scripts/fetch_kaggle_dataset.sh
+#fetch_data: &fetch_data
+ # run:
+  #  name: Set script permissions and fetch data
+   # command: |
+    #  source venv/bin/activate
+     # chmod +x ./scripts/fetch_kaggle_dataset.sh
+      #./scripts/fetch_kaggle_dataset.sh
 
 jobs:
-  fetch_data: &fetch_data
-  run:
-    name: Set script permissions and fetch data
-    command: |
-      source venv/bin/activate
-      chmod +x ./scripts/fetch_kaggle_dataset.sh
-      ./scripts/fetch_kaggle_dataset.sh
+  fetch_data:
+    run:
+      name: Set script permissions and fetch data
+      command: |
+        source venv/bin/activate
+        chmod +x ./scripts/fetch_kaggle_dataset.sh
+        ./scripts/fetch_kaggle_dataset.sh
   test_regression_model_py36:
     docker:
       - image: circleci/python:3.6.9
